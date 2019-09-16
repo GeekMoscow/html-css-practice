@@ -76,17 +76,53 @@ window.addEventListener("DOMContentLoaded",function() {
 
             function updateClock() {
                 let t = getTimeremaining(endtime);
-                hour.textContent = t.hours;
-                min.textContent = t.minutes;
-                sec.textContent = t.seconds;
+                hour.textContent = addZero(t.hours);
+                
+                min.textContent = addZero(t.minutes);
+                
+                sec.textContent = addZero(t.seconds);
+                
+
+                function addZero(time){
+                    if(time < 10) {
+                        return  '0' + time;
+                    } else {
+                        return time;
+                    }
+                }
 
                 if(t.total <= 0) {
                     clearInterval(timeinterval);
-                }
+                    hour.textContent = '00';
+                     min.textContent = '00';
+                    sec.textContent = '00';
+                };
         }
     }
     //запускаем функцию
     setclock('timer', deadLine);
+
+    //Modal window
+    let more = document.querySelector('.more');
+    let overlay = document.querySelector('.overlay');
+    let close = document.querySelector('.popup-close');
+    //клик на кнопку
+    more.addEventListener('click', function() {
+        overlay.style.display = 'block';
+        this.classList.add('more-splash');
+    //запрет пеермещения страницы когда открыта
+        document.body.style.overflow = 'hidden';
+    });
+    //закрытие модального окна
+    close.addEventListener('click', function() {
+        overlay.style.display = 'none';
+        more.classList.remove('more-splash');
+        document.body.style.overflow = '';
+
+    });
+
+    let infoTab = document.querySelector
+    
 
 
 });
