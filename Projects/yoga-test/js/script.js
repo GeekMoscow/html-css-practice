@@ -223,14 +223,58 @@ window.addEventListener("DOMContentLoaded",function() {
 
     //точки
     dotsWrap.addEventListener('click', function(event) {
-        for(let i = 0; i < dots.length + 1 ; i++) {
-            if(event.target.classList.contains('dot') && event.target == dots[i-1]) {
-                currentSlide(i);
+        for(let i = 0; i < dots.length  ; i++) {
+            if(event.target.classList.contains('dot') && event.target == dots[i]) {
+                currentSlide(i+1);
             }
         }
     });
 
     
+    //Calc
+    let persons = document.querySelectorAll('.counter-block-input')[0];
+    let restDays = document.querySelectorAll('.counter-block-input')[1];
+    let place = document.getElementById('select');
+    let totalValue = document.getElementById('total');
+
+    let personsSum = 0;
+    let daysSum = 0;
+    let total = 0;
+
+    totalValue.innerHTML = 0;
+
+    persons.addEventListener('change', function() {
+        personsSum = +this.value;
+        total = ( daysSum + personsSum)*4000;
+
+        if(restDays.value == '' || personsSum == 0) {
+            totalValue.innerHTML = 0;
+        }else {
+            
+            totalValue.innerHTML = total;
+        }
+    });
+    restDays.addEventListener('change', function() {
+        daysSum = +this.value;
+        total = ( daysSum + personsSum)*4000;
+
+         if( daysSum == 0 || persons.value == '' ) {
+            totalValue.innerHTML = 0;
+        }else {
+            
+            totalValue.innerHTML = total;
+        }
+    });
+
+    place.addEventListener('change', function() {
+        if(restDays.value == "" || persons.value == "") {
+            totalValue.innerHTML = 0;
+        } else {
+            let a = total;
+            totalValue.innerHTML = a * this.options[this.selectedIndex].value;
+        }
+    })
+
 
 
 });
