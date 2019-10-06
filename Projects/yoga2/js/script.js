@@ -78,5 +78,28 @@ window.addEventListener('DOMContentLoaded', function() {
     setClock('timer', deadline);
 
 
+    //MODAL-------------------------
+
+    let more = document.querySelector('.more');
+    let overlay = document.querySelector('.overlay');
+    let close = document.querySelector('.popup-close');
+
+    more.addEventListener('click', function() {
+        this.classList.add('more-slash');
+        overlay.style.display = 'block';
+        document.body.style.overflow ='hidden';
+
+    });
+
+    close.addEventListener('click', function() {
+        overlay.style.display = 'none';
+        more.classList.remove('more-slash');
+        document.body.style.overflow ='';
+
+    });
+
+
+
+
 
 });
