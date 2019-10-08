@@ -99,6 +99,51 @@ window.addEventListener('DOMContentLoaded', function() {
     });
 
 
+    //AJAX FORM
+    let message = new Object();
+    message.loading = "Loading ...";
+    message.success = "Thanks we will call you..";
+    message.failure = "Something gone wrong..";
+
+    let form = document.getElementsByClassName('main-form')[0];
+    let input = form.getElementsByTagName('input');
+    let statusMess = document.createElement('div');
+    statusMess.classList.add('status');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        form.appendChild(statusMess);
+
+        //AJAX
+        let request =new XMLHttpRequest();
+        request.open("POST","server.php");
+        //кодировка данных
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        //получаем данные из инпутов
+        let formData = new FormData(form);
+        request.send(formData);
+
+        //статус готовности в данный момент
+        request.onreadystatechange = function() {
+                if(request.readyState < 4) {
+                    statusMess.innerHTML = message.loading;
+                } else if( request.readyState === 4) {
+                    if(request.status == 200 && request.status < 300) {
+                    statusMess.innerHTML = message.success;
+                    //добавляем контект на страницу
+                    } else {
+                        statusMess.innerHTML = message.failure;
+                    }
+                }
+        }
+        //clear form input
+        for(let i = 0; i < input.length; i++) {
+            input[i].value = '';
+        }
+    })
+
+
+
 
 
 
