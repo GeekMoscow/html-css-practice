@@ -1,0 +1,19 @@
+.header__title {
+  color: #FB8C00;
+}
+
+.header__text {
+  color: #955300;
+}
+
+.header__button {
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 18px;
+  background-color: #FB8C00;
+  -webkit-box-shadow: 1px 5px 20px #ffa32f;
+          box-shadow: 1px 5px 20px #ffa32f;
+}
+/*# sourceMappingURL=main.css.map */
