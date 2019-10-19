@@ -1,0 +1,15 @@
+*{
+    box-sizing: border-box;
+}
+
+.zoom {
+    height: 200px;
+    width: 200px;
+    background-color: green;
+    margin: auto;
+    transition: transform .3s;
+}
+
+.zoom:hover {
+    transform: scale(1.2);
+}
